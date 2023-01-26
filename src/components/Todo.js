@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Checkbox from '@mui/material/Checkbox';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import IconButton from "@mui/material/IconButton";
 import { deleteTodo, updateTodo } from "../slices/todoSlice";
-
+import DeleteTodo from "../services/Delete"
 
 const Todo = ({ todo }) => {
 
-    const [status, setStatus] = useState(() => todo.status === "Completed" ? true : false);
+    const [completed, setCompleted] = useState(() => todo.completed === "Completed" ? true : false);
 
     const dispatch = useDispatch();
 
@@ -14,23 +16,30 @@ const Todo = ({ todo }) => {
         dispatch(
             (updateTodo({
                 ...todo,
-                status: status ? "Completed" : "Uncompleted"
+                completed: completed ? "Completed" : "Uncompleted"
             }))
         )
-    }, [status]);
+    }, [completed]);
 
     const deleteItem = () => {
-        dispatch(
-            (deleteTodo(todo.id))
-        )
+        DeleteTodo(todo._id).then( (data) => {
+            console.log("delete data", data);
+            
+            dispatch(
+                deleteTodo(todo.id)
+            )
+        });
     }
     return (
         <div>
             <div className="todo-item">
-                <Checkbox checked={status} onChange={() => setStatus(status => !status)} />
+                <Checkbox checked={completed} onChange={() => setCompleted(completed => !completed)} />
                 <p>{todo.name}</p>
-                <p>{todo.status}</p>
-                <button onClick={deleteItem}>delete</button>
+                <p>{todo.completed}</p>
+                <IconButton onClick={deleteItem}>
+                    <DeleteOutlineIcon />
+                </IconButton>
+
             </div>
         </div>
     )
