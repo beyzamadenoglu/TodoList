@@ -42,7 +42,7 @@ export const todoSlice = createSlice({
             if (todoList) {
                 const todoListArr = JSON.parse(todoList);
                 todoListArr.forEach((todo, index) => {
-                    if (todo.id === action.payload) {
+                    if (todo._id === action.payload) {
                         todoListArr.splice(index, 1);
                     }
                 });
@@ -55,7 +55,7 @@ export const todoSlice = createSlice({
             if (todoList) {
                 const todoListArr = JSON.parse(todoList);
                 todoListArr.forEach(todo => {
-                    if (todo.id === action.payload.id) {
+                    if (todo._id === action.payload._id) {
                         todo.completed = action.payload.completed;
                         todo.name = action.payload.name;
                     }

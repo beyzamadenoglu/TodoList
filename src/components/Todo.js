@@ -5,18 +5,20 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import IconButton from "@mui/material/IconButton";
 import { deleteTodo, updateTodo } from "../slices/todoSlice";
 import DeleteTodo from "../services/Delete"
+import UpdateTodo from "../services/Update";
+
 
 const Todo = ({ todo }) => {
-
-    const [completed, setCompleted] = useState(() => todo.completed === "Completed" ? true : false);
-
+    const [completed, setCompleted] = useState(todo.completed);
     const dispatch = useDispatch();
 
     useEffect(() => {
+        UpdateTodo(todo._id, completed)
+
         dispatch(
             (updateTodo({
                 ...todo,
-                completed: completed ? "Completed" : "Uncompleted"
+                completed: completed
             }))
         )
     }, [completed]);
@@ -26,7 +28,7 @@ const Todo = ({ todo }) => {
             console.log("delete data", data);
             
             dispatch(
-                deleteTodo(todo.id)
+                deleteTodo(todo._id)
             )
         });
     }
