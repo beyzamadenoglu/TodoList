@@ -25,7 +25,6 @@ const TodoList = () => {
     }, [todoList])
 
     useEffect(() => {
-        console.log("dfadsf", localTodos)
         setTodoList(localTodos)
     }, [localTodos.length])
 

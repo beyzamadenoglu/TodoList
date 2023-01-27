@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import Checkbox from '@mui/material/Checkbox';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import IconButton from "@mui/material/IconButton";
+import { toast } from 'react-toastify';
 import { deleteTodo, updateTodo } from "../slices/todoSlice";
 import DeleteTodo from "../services/Delete"
 import UpdateTodo from "../services/Update";
@@ -22,13 +23,25 @@ const Todo = ({ todo }) => {
         })
     }, [completed]);
 
+    const successMessage = () => {
+        toast.success("Succesfully Deleted!", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      };
+    
+      const errorMessage = () => {
+        toast.error("Task did not deleted!", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      };
+
     const deleteItem = () => {
         DeleteTodo(todo._id).then( (data) => {
             if (data.status == 200) {
-                alert("Task succesfully deleted! ❤️‍🔥")
+               successMessage();
                 dispatch(deleteTodo(todo._id)) 
             } else {
-                alert("Sorry, this task can not be deleted 💔")
+                errorMessage();
             }
             
         });
