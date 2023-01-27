@@ -76,7 +76,7 @@ const TodoForm = () => {
         }} className="add-form">
           <InputLabel sx={{ gridArea: 'label' }} htmlFor="my-input">Add Your Todos</InputLabel>
           <Input placeholder={"Task description"} sx={{ gridArea: 'input' }} id="my-input" aria-describedby="my-helper-text" onChange={(e) => setTodo(e.target.value)} />
-          <Button sx={{ gridArea: 'button' }} variant="contained" color="secondary" className="button" type="submit">Add Todo</Button>
+          <Button sx={{ gridArea: 'button' }} variant="contained" color="secondary" className="button" type="submit">Add</Button>
         </FormGroup>
       </form>
     </div>

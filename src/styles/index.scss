@@ -19,7 +19,7 @@ body {
 	margin-top: 5%;
 }
 
-label{
+label {
 	letter-spacing: unset !important;
 }
 
@@ -51,16 +51,17 @@ label{
 		transition: 0.3s;
 		cursor: pointer;
 		border: 1px solid #ccc;
+		p {
+			width: 100%;
+		}
 		span {
 			font-weight: bold;
 			font-size: 10px;
-			color: white;
+			color: #9c27b0;
 			padding: 2px 6px;
+			margin-right: 20px;
 			border-radius: 4px;
 			cursor: pointer;
-			&:first-child {
-				background-color: #ddd;
-			}
 		}
 		&:not(:last-child) {
 			margin-bottom: 15px;
@@ -71,7 +72,15 @@ label{
 		&.done {
 			opacity: 0.5;
 			position: relative;
+			p {
+				text-decoration: line-through;
+				font-style: italic;
+			}
 		}
+	}
+	.button {
+		font-size: smaller;
+		padding: 4px 8px;
 	}
 }
 .todo {
@@ -126,7 +135,13 @@ label{
 	.add-form, .todos {
 		width: 89%;
 	}
-	p{
+	p {
 		font-size: small;
+	}
+
+	.todos {
+		.button {
+			font-size: x-small;
+		}
 	}
 }
