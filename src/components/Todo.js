@@ -7,42 +7,41 @@ import { deleteTodo, updateTodo } from "../slices/todoSlice";
 import DeleteTodo from "../services/Delete"
 import UpdateTodo from "../services/Update";
 
-
 const Todo = ({ todo }) => {
     const [completed, setCompleted] = useState(todo.completed);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        UpdateTodo(todo._id, completed)
-
-        dispatch(
-            (updateTodo({
-                ...todo,
-                completed: completed
-            }))
-        )
+        UpdateTodo(todo._id, completed).then((data) => {
+            dispatch(
+                (updateTodo({
+                    ...todo,
+                    completed: completed
+                }))
+            )
+        })
     }, [completed]);
 
     const deleteItem = () => {
         DeleteTodo(todo._id).then( (data) => {
-            console.log("delete data", data);
+            if (data.status == 200) {
+                alert("Task succesfully deleted! ❤️‍🔥")
+                dispatch(deleteTodo(todo._id)) 
+            } else {
+                alert("Sorry, this task can not be deleted 💔")
+            }
             
-            dispatch(
-                deleteTodo(todo._id)
-            )
         });
     }
     return (
-        <div>
-            <div className="todo-item">
-                <Checkbox checked={completed} onChange={() => setCompleted(completed => !completed)} />
-                <p>{todo.name}</p>
-                <p>{todo.completed}</p>
-                <IconButton onClick={deleteItem}>
-                    <DeleteOutlineIcon />
-                </IconButton>
+        <div className="todo">
+            <Checkbox checked={completed} onChange={() => setCompleted(completed => !completed)} />
+            <p>{todo.name}</p>
+            <p>{todo.completed}</p>
+            <IconButton className="button" onClick={deleteItem}>
+                <DeleteOutlineIcon />
+            </IconButton>
 
-            </div>
         </div>
     )
 }

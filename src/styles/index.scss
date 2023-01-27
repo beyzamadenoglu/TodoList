@@ -1,12 +1,116 @@
-h2 {
-    color:blue;
-    &:hover{
-        color: red;
-    }
-  }
-
-$myColor: red;
-
-h2 {
-  background-color: $myColor;
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+	width: 500px;
+	margin: 20px auto;
+}
+.add-form {
+	background-color: #eee;
+	border-radius: 6px;
+	padding: 20px;
+	display: flex;
+	align-items: center;
+    width: 50%;
+    margin: auto;
+}
+.button {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	flex: 1;
+}
+.button:focus , .add:focus {
+	outline: none;
+}
+.add {
+	border: none;
+	color: white;
+	padding: 10px;
+	border-radius: 6px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+.todos {
+	background-color: #eee;
+    margin: auto;
+    width: 50%;
+	margin-top: 20px;
+	border-radius: 6px;
+	padding: 20px;
+	.todo {
+		background-color: white;
+		padding: 10px;
+		border-radius: 6px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		transition: 0.3s;
+		cursor: pointer;
+		border: 1px solid #ccc;
+		span {
+			font-weight: bold;
+			font-size: 10px;
+			color: white;
+			padding: 2px 6px;
+			border-radius: 4px;
+			cursor: pointer;
+			&:first-child {
+				background-color: #ddd;
+			}
+		}
+		&:not(:last-child) {
+			margin-bottom: 15px;
+		}
+		&:hover {
+			background-color: #f7f7f7;
+		}
+		&.done {
+			opacity: 0.5;
+			position: relative;
+		}
+	}
+}
+.todo {
+	&.done {
+		&::after {
+			position: absolute;
+			content: "";
+		}
+	}
+}
+.delete-all {
+	width: calc(100% - 25px);
+	margin: auto;
+	padding: 12px;
+	text-align: center;
+	font-size: 14px;
+	color: white;
+	margin-top: 20px;
+	cursor: pointer;
+	border-radius: 4px;
+}
+.pagination {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 1rem;
+	button {
+		width: 40px;
+		height: 40px;
+		font-family: inherit;
+		font-weight: 600;
+		font-size: 16px;
+		margin: 0 10px;
+		border-radius: 6px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		background: transparent;
+		border-color: #eee;
+		&.active {
+			font-weight: 900;
+			border-color: #101010;
+			color: #101010;
+		}
+	}
 }

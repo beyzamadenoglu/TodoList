@@ -6,10 +6,8 @@ import axios, { URL } from '../axios/axios';
         .then((response) => {
             return response;
         })
-    
         .catch((error) => {
-            console.log('Error occurred:', error);
-            return error.code;
+            return error;
         });
 }
 

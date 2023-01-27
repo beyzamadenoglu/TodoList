@@ -4,10 +4,10 @@ import TodoList from "../components/TodoList";
 
 function TodoPage() {
   return (
-    <>
+    <div>
         <Form />
         <TodoList />
-    </>
+    </div>
   )
 }
 
