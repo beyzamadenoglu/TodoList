@@ -1,6 +1,7 @@
+import env from "react-dotenv";
 import axios from 'axios';
 
-export const baseURL = process.env.BACKEND_BASE_URL;
+export const baseURL = env.BACKEND_BASE_URL;
 
 export default axios.create({baseURL});
 
