@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const baseURL = 'http://localhost:3000/todos';
+export const baseURL = process.env.BASE_URL;
 
 export default axios.create({baseURL});
 
@@ -9,5 +9,4 @@ export const URL = {
     delete: '/delete',
     update: '/update',
     getAll: '/get',
- 
 }
