@@ -4,6 +4,7 @@ import Checkbox from '@mui/material/Checkbox';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import IconButton from "@mui/material/IconButton";
 import { toast } from 'react-toastify';
+import { format } from 'date-fns';
 import { deleteTodo, updateTodo } from "../slices/todoSlice";
 import DeleteTodo from "../services/Delete"
 import UpdateTodo from "../services/Update";
@@ -13,7 +14,7 @@ const Todo = ({ todo }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        UpdateTodo(todo._id, completed).then((data) => {
+        UpdateTodo(todo._id, completed).then(() => {
             dispatch(
                 (updateTodo({
                     ...todo,
@@ -25,32 +26,33 @@ const Todo = ({ todo }) => {
 
     const successMessage = () => {
         toast.success("Succesfully Deleted!", {
-          position: toast.POSITION.TOP_RIGHT
+            position: toast.POSITION.TOP_RIGHT
         });
-      };
-    
-      const errorMessage = () => {
+    };
+
+    const errorMessage = () => {
         toast.error("Task did not deleted!", {
-          position: toast.POSITION.TOP_RIGHT
+            position: toast.POSITION.TOP_RIGHT
         });
-      };
+    };
 
     const deleteItem = () => {
-        DeleteTodo(todo._id).then( (data) => {
+        DeleteTodo(todo._id).then((data) => {
             if (data.status == 200) {
-               successMessage();
-                dispatch(deleteTodo(todo._id)) 
+                successMessage();
+                dispatch(deleteTodo(todo._id))
             } else {
                 errorMessage();
             }
-            
+
         });
     }
     return (
-        <div className="todo">
+        <div className={completed ? "todo done" : "todo"}>
             <Checkbox checked={completed} onChange={() => setCompleted(completed => !completed)} />
             <p>{todo.name}</p>
             <p>{todo.completed}</p>
+            <p className="date">{format(new Date(todo.date), 'p, dd/MM/yy')}</p>
             <IconButton className="button" onClick={deleteItem}>
                 <DeleteOutlineIcon />
             </IconButton>

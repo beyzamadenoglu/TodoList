@@ -57,7 +57,6 @@ export const todoSlice = createSlice({
                 todoListArr.forEach(todo => {
                     if (todo._id === action.payload._id) {
                         todo.completed = action.payload.completed;
-                        todo.name = action.payload.name;
                     }
                 });
                 window.localStorage.setItem("todoList", JSON.stringify(todoListArr));

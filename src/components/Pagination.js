@@ -1,10 +1,8 @@
 import React from 'react'
 
-const Pagination = ({ totalPosts, postsPerPage, setCurrentPage, currentPage }) => {
-
+const Pagination = ({ totalTodos, todosPerPage, setCurrentPage, currentPage }) => {
     let pages = [];
-
-    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(totalTodos / todosPerPage); i++) {
         pages.push(i);
     }
 
@@ -12,16 +10,16 @@ const Pagination = ({ totalPosts, postsPerPage, setCurrentPage, currentPage }) =
         <div className="pagination">
             {
                 pages.map((page, index) => (
-                    <>
-                        <button className={page == currentPage ? "active" : ""} key={index}
-                            onClick={() => setCurrentPage(page)}>
+                    <div key={index}>
+                        <button className={page == currentPage ? "active" : ""}
+                            onClick={() => setCurrentPage(page)} >
                             {page}
                         </button>
-                    </>
+                    </div>
                 ))
             }
         </div>
-    )
+    );
 }
 
 export default Pagination;

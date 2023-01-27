@@ -6,8 +6,8 @@ import { addTodo } from "../slices/todoSlice";
 import AddTodo from '../services/Add';
 
 const TodoForm = () => {
-
   const [todo, setTodo] = useState([]);
+  const [date, setDate] = useState(null);
   const [status, setStatus] = useState(false);
   const dispatch = useDispatch();
 
@@ -15,6 +15,7 @@ const TodoForm = () => {
     const todoObject = {
       name: todo,
       status: false,
+      date: date,
     }
     return await AddTodo(todoObject).then(response => {
       if (response.status === 200) {
@@ -44,10 +45,13 @@ const TodoForm = () => {
     handleService().then((res) => {
       if (res['success']) {
         successMessage();
+        setDate(new Date().toLocaleString())
         dispatch(
           addTodo({
+            _id: res.response.data._id,
             name: todo,
             status: status,
+            date: new Date().toLocaleString()
           })
         )
       } else {
