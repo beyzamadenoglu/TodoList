@@ -20,6 +20,7 @@ You can access to this project on live! [Here is a link to it](https://todo-app-
 - `dotenv` library is used for DB credentials to be managed on backend side
 - For styling, `SASS` is used to better manage CSS code
 - To retrieve and manipulate data with BE side, `Axios` is used
+- `Toastify` library used for creating notifications
 
 ## Data lifecycle
 Within the app once loads, a request is being made to the backend application in order to retrieve all the data that we have. Within the next actions such as ADD/DELETE/UPDATE each and every time I updated the local storage.
