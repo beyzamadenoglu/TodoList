@@ -23,4 +23,4 @@ You can access to this project on live! [Here is a link to it](https://todo-app-
 - `Toastify` library used for creating notifications
 
 ## Data lifecycle
-Within the app once loads, a request is being made to the backend application in order to retrieve all the data that we have. Within the next actions such as ADD/DELETE/UPDATE each and every time I updated the local storage.
+Within the app once loads, a request is being made to the backend application in order to retrieve all the data that we have. Within the next actions such as ADD/DELETE/UPDATE each and every time I updated the local storage..
